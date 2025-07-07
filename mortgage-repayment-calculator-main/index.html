@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Mortgage repayment calculator</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #over_all {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: hsl(203, 41%, 72%);
+      padding: 100px;
+    }
+
+    #over {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background-color: hsl(0, 0%, 100%);
+      border-radius: 25px;
+      width: 850px;
+    }
+
+    #first {
+      display: flex;
+      flex-direction: column;
+      padding: 25px;
+    }
+
+    #second {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      background-color: hsl(200, 24%, 40%);
+      color: aliceblue;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      border-bottom-left-radius: 85px;
+
+
+    }
+
+    #first_one {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 3%;
+    }
+
+    #first_two {
+      display: flex;
+      flex-direction: column;
+      padding: 5% 0%;
+
+      label {
+        padding-bottom: 3%;
+      }
+    }
+
+    #first_three {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+
+      input {
+        height: 2.5rem;
+        margin-top: .5rem;
+      }
+      #term {
+        width: 100%;
+      }
+      #rate {
+        width: 100%;
+      }
+    }
+
+    #first_four {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+
+      div {
+        padding: 10px;
+        /* outline: 1px solid hsl(0, 9%, 33%); */
+        border: 2px solid hsl(0, 3%, 65%);
+        border-radius: 7px;
+      }
+      div:hover {
+        border: 2px solid rgb(249, 249, 100);
+      }
+    }
+
+    #first_five {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      margin-top: 2rem;
+      background-color: hsl(61, 70%, 52%);
+      border-radius: 15px;
+
+    }
+
+    .second_one {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    .second_two {
+      display: none;
+      width: 450px;
+      padding: 1rem;
+    }
+
+    #second_top {
+      padding: 20px;
+
+      h1 {
+        padding-bottom: 1rem;
+      }
+
+      p {
+        padding-bottom: 1rem;
+
+      }
+    }
+
+    #second_buttom {
+      border-top: .3rem solid yellow;
+      border-radius: 10px;
+      background-color: hsl(202, 63%, 17%);
+      height: fit-content;
+      width: 380px;
+      margin-left: 22px;
+      padding: 20px;
+
+      h1 {
+        color: yellow;
+        padding: 5% 0%;
+      }
+
+      hr {
+        margin: 3% 0%;
+      }
+
+      .last {
+        font-size: larger;
+        line-height: 0;
+        color: aliceblue;
+      }
+    }
+
+    #number {
+      height: 2.5rem;
+      width: 100%;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+    }
+    #term {
+      height: 2.5rem;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+    }
+    #rate {
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+    }
+    
+    small {
+      display: none;
+      margin-top: .3rem;
+      color: red;
+    }
+    span {
+      font-weight: 500;
+      font-size: larger;
+    }
+    .foruthrequired {
+      margin-top: -.7rem;
+    }
+      
+    #red_bacground {
+      background-color: rgb(141, 158, 180);
+      color: rgb(5, 37, 65);
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid rgb(104, 102, 102);
+      border-right: none;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+      /* padding-top: 10px; */
+    }
+    #red_second_bacground{
+      background-color: rgb(141, 158, 180);
+      color: rgb(5, 37, 65);
+      width: 50px;
+      height: 40.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgb(114, 105, 105);
+      border-left: none;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+      position: relative;
+      top: -.3px;
+    }
+    #red_third_bacground {
+      background-color: rgb(141, 158, 180);
+      color: rgb(5, 37, 65);
+      width: 50px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid rgb(91, 79, 79);
+      /* outline: 1px solid rgb(177, 168, 168); */
+      border-left: none;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+    }
+
+    @media screen and (max-width: 600px) {
+      #over_all {
+        display: flex;
+        padding: 0%;
+        width: 100%;
+      }
+
+      #over {
+        padding: 0%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* background-color: brown; */
+      }
+
+      #first_one {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      #first_three {
+        display: flex;
+        flex-direction: column;
+
+        div {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      #second {
+        border-radius: 0%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <p id="hello">
+    hello
+  </p>
+
+  <form id="over_all">
+
+    <div id="over">
+
+      <div id="first">
+
+        <div id="first_one">
+          <h1> Mortgage Calculator</h1>
+          <p id="clear_all"> Clear All</p>
+        </div>
+        <div id="first_two">
+          <label for="number1">Mortgage Amount</label>
+          <div style="display: inline-flex;">
+            <span id="red_bacground">&pound;</span>
+            <input type="text" name="number" id="number" >
+          </div>
+          <small class="firstrequired">This field is required</small>
+        </div>
+        <div id="first_three">
+          <div id="">
+            <label for="term">Mortgage Term</label>
+            <div style="display: inline-flex; align-items: center;">
+            <input class="red" type="text" id="term">
+            <span id="red_second_bacground"  style="margin-top: 9px;">&yacute;</span>
+          </div>
+            <small class="secondrequired">This field is required</small>
+          </div>
+          <div>
+            <label for="rate"> Interest Rate</label>
+            <div style="display: inline-flex; align-items: center;">
+              <input class="red" type="rate" name="rate" id="rate">
+              <span id="red_third_bacground"  style="margin-top: 9px";>&percnt;</span>
+          </div>
+            <small class="thirdrequired">This field is required</small>
+          </div>
+        </div>
+        <p style="padding: 5% 0%;"> Mortgage Type</p>
+        <div id="first_four">
+          <div>
+            <input type="radio" name="radio" id="repayment" value="repayment">
+            <label for="repayment"> Repayment</label>
+          </div>
+          <div id="interest_border">
+            <input type="radio" name="radio" id="interest" value="interest">
+            <label for="interest"> Interest Only</label>
+          </div>
+          <small class="foruthrequired">This field is required</small>
+        </div>
+        <div id="first_five">
+          <img src="assets/images/icon-calculator.svg" alt="">
+          <input type="submit" type="submit" class="calculate" id="calculate" value="Calculate Repayments">
+        </div>
+
+      </div>
+
+      <div id="second">
+        <div class="second_one">
+          <img src="assets/images/illustration-empty.svg" alt="">
+          <h1>Results shown here</h1>
+          <p>Complete the form and click “calculate repayments” to see what
+            your monthly repayments would be.</p>
+        </div>
+
+        <div class="second_two">
+          <div id="second_top">
+            <h1>Your results</h1>
+            <p> Your results are shown below based on the information you provided.
+              To adjust the results, edit the form and click “calculate repayments” again.</p>
+          </div>
+          <div id="second_buttom">
+            <p>Your monthly repayments</p>
+            <h1 class="print"></h1>
+            <hr>
+            <p> Total you'll repay over the term</p>
+            <h1 class="last print"></h1>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const overAll = document.getElementById('over_all')
+
+      overAll.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+
+        const number = document.getElementById('number')
+        const term = document.getElementById('term')
+        const rate = document.getElementById('rate')
+        const input = document.querySelectorAll('input[type="radio"]')
+
+        const numberValue = number.value.trim()
+        const termValue = term.value.trim()
+        const rateValue = rate.value.trim()
+
+
+        // const inputValue = input.checked
+        let inputChecked = false
+        let radioValue = null
+        input.forEach(radio => {
+          if (radio.checked) {
+            inputChecked = true
+            // alert(radio.value)
+
+            radioValue = radio.value
+          }
+        })
+
+
+        isValid = true
+
+        const red = document.getElementById('red_bacground')
+        const numberErro = document.querySelector('.firstrequired')
+        if (numberValue) {
+          numberErro.style.display = 'none'
+          red.style.border = '1px solid rgb(104, 102, 102)'
+        } else {
+          numberErro.style.display = 'block'
+          red.style.backgroundColor = 'red'
+          red.style.border = 'red'
+          numberErro.previousElementSibling.lastElementChild.style.border = '2px solid red'
+          // numberErro.previousElementSibling.childNodes.style.border = '1px solid red'
+          // const bothOfThem = numberErro + red
+          // alert(bothOfThem)
+          isValid = false
+        }
+
+        const number_color_out = document.getElementById('number')
+        number_color_out.addEventListener('click', (event) => {
+          document.querySelector('.firstrequired').style.display = "none"
+          document.getElementById('red_bacground').style.backgroundColor = 'rgb(141, 158, 180)'
+          numberErro.previousElementSibling.lastElementChild.style.border = '1px solid black'
+          red.style.border = '1px solid rgb(104, 102, 102)'
+          numberErro.previousElementSibling.lastElementChild.style.transition = 'ease-in-out 3s'
+          document.getElementById('red_bacground').style.style.transition = 'ease-in-out 5s'
+        })
+        // number_color_out.onkeyup = function(){
+        //   const removeChar = this.value.replace(/[^0-9\.]/g, '')
+        //   // console.log(removeChar);
+        //   const removeDot = removeChar.replace(/\./g, '')
+        //   this.value = removeDot
+
+        //   const forComma = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        //   this.value = forComma
+        //   isValid = false
+        // };
+        const red_second = document.getElementById('red_second_bacground')
+        const termErro = document.querySelector('.secondrequired')
+        if (termValue) {
+          termErro.style.display = "none"
+          red_second.style.border = '1px solid rgb(104, 102, 102)'
+        }
+        else {
+          red_second.style.backgroundColor = 'red'
+          red_second.style.border = 'red'
+          termErro.parentNode.firstElementChild.nextElementSibling.firstElementChild.style.border = '2px solid red'
+          termErro.style.display = "block"; isValid = false
+        }
+
+        const term_color_out = document.getElementById('term')
+        term_color_out.addEventListener('click', (event) => {
+        termErro.style.display = 'none'
+        termErro.parentNode.firstElementChild.nextElementSibling.firstElementChild.style.border = '1px solid black'
+        red_second.style.border = '1px solid rgb(104, 102, 102)'
+        document.getElementById('red_second_bacground').style.backgroundColor = 'rgb(141, 158, 180)'
+        })
+
+        const red_third = document.getElementById('red_third_bacground')
+        const rateErro = document.querySelector('.thirdrequired')
+        if (rateValue) {
+          rateErro.style.display = "none"
+          red_third.style.border = '1px solid rgb(104, 102, 102)'
+        }
+        else {
+          red_third.style.backgroundColor = 'red'
+          red_third.style.border = 'red'
+          rateErro.parentNode.firstElementChild.nextElementSibling.firstElementChild.style.border = '2px solid red'
+          rateErro.style.display = "block"; isValid = false
+        }
+
+        rate.addEventListener('click', (event) => {
+        document.getElementById('red_third_bacground').style.backgroundColor = 'rgb(141, 158, 180)'
+        rateErro.parentNode.firstElementChild.nextElementSibling.firstElementChild.style.border = '1px solid black'
+        rateErro.style.display = 'none'
+        red_third.style.border = '1px solid rgb(104, 102, 102)'
+
+        })
+
+        const inputErro = document.querySelector('.foruthrequired')
+        if (inputChecked) {
+          inputErro.style.display = "none"
+        }
+        else {
+          inputErro.style.display = "block"; isValid = false
+        }
+
+        const input_color_repayment = document.getElementById("repayment")
+        input_color_repayment.addEventListener('click', (event) => {
+          inputErro.style.display = 'none'
+        })
+        const input_color_interest = document.getElementById("interest")
+        input_color_interest.addEventListener('click', (event) => {
+          inputErro.style.display = 'none'
+        })
+
+        if (isValid) {
+          const defaultDisplay = document.querySelector('.second_one')
+          const resultDisplay = document.querySelector('.second_two')
+
+          const Principal = numberValue
+          const num_of_time = termValue
+          const rate = rateValue / (100 * 12)
+
+          const BracketContent = 1 + rate
+          const numerator = Principal * rate * Math.pow(BracketContent, num_of_time)
+          const denominator = Math.pow(BracketContent, num_of_time - 1)
+
+          const monthlyRepayment = numerator / denominator
+
+          const totalRepayment = monthlyRepayment * num_of_time
+
+          const totalInterest = totalRepayment - Principal
+          // const monthlyInterest = totalInterest / num_of_time
+
+          if (radioValue === 'repayment') {
+            document.querySelector('.print').style.display = 'block'
+          inputErro.parentElement.firstElementChild.style.border = '2px solid yellow'
+
+            function output_repayment() {
+              document.querySelector('.print').innerHTML = '&euro; ' + monthlyRepayment.toLocaleString('en-us', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              });
+              document.querySelector('.last').innerHTML = '&euro;' + totalRepayment.toLocaleString('en-us', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
+            };
+            output_repayment()
+          } else {
+          inputErro.parentElement.firstElementChild.style.border = '1px solid hsl(0, 3%, 65%)'
+            document.querySelector('.last').style.display = 'block'
+          };
+          if (radioValue === 'interest') {
+            document.querySelector('.print').style.display = 'none'
+          inputErro.previousElementSibling.style.border = '2px solid yellow'
+            function output_total() {
+              // document.querySelector('.print').innerHTML = Math.abs(monthlyInterest).toFixed(2)
+              document.querySelector('.last').innerHTML = Math.abs(totalInterest).toLocaleString('en-us', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
+            }
+            output_total()
+          } else {
+          inputErro.previousElementSibling.style.border = '1px solid hsl(0, 3%, 65%)'
+            document.querySelector('.last').style.display = 'block'
+          }
+
+
+
+
+
+          defaultDisplay.style.display = 'none'
+          resultDisplay.style.display = 'block'
+        }
+
+        // alert(isValid)
+      })
+
+
+    })
+
+
+    const clearAll = () => {
+      const clear_all = document.getElementById('clear_all')
+      clear_all.addEventListener('click', function () {
+        location.reload()
+      })
+    }
+
+    clearAll()
+
+  </script>
+
+
+
+</body>
+
+</html>
